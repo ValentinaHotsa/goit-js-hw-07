@@ -33,22 +33,24 @@ function openOriginal(event) {
     event.preventDefault();
 
     const instance = basicLightbox.create(`
-   <img src="${clickOr}">
-`)
+   <img src="${clickOr}">`,
+        {
+            onShow: (instance) => { 
+                document.addEventListener('keydown', evt => {
+                    if (evt.code === "Escape") {
+                        instance.close();
+                    }
+                })
+            }
+        }
+    )
 
-instance.show();
+    instance.show();
+
+    
 };
 
 
 galleryList.addEventListener('click', openOriginal);
-
-// dataset.source
-
-// event.preventDefault()
-
-
-// if (event.target.nodeName !== "BUTTON") {
-//         return;
-//     }
 
 
